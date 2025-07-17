@@ -1,98 +1,148 @@
-URL Shortener API – Innovaxel Assignment
+# URL Shortener
 
-This is a simple RESTful API built using **Python (Flask)** and **MongoDB Atlas** that allows users to shorten long URLs and manage them.
+A simple URL shortening service built using **Python (Flask)** and **MongoDB Atlas**. The application provides a RESTful API and a minimal frontend to shorten long URLs and track access statistics.
 
-## 🚀 Features
+## ✨ Features
 
-- Create a new short URL
-- Retrieve the original URL
-- Update the long/original URL
-- Delete the short URL
-- Get access statistics (how many times the short URL has been used)
+* Create short URLs from long ones
+* Retrieve the original long URL
+* Redirect to long URLs using the short code
+* Update the long/original URL
+* Delete short URLs
+* View stats: number of times a short URL was accessed
 
-## 📦 Tech Stack
+## 🧰 Tech Stack
 
-- **Backend**: Python, Flask
-- **Database**: MongoDB Atlas (NoSQL)
-- **Environment Management**: `venv`, dotenv
-- **API Testing**: Postman
+* **Backend**: Python, Flask
+* **Database**: MongoDB Atlas (NoSQL)
+* **Frontend**: HTML, CSS, JavaScript
+* **Environment**: `venv`, `python-dotenv`
+* **Testing**: Postman (for API endpoints)
 
-## 🛠️ Setup Instructions
+## 🚀 Getting Started
 
-1. **Clone the Repository**:
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/fahadnasir13/fahad-innovaxel-nasir.git
-cd fahad-innovaxel-nasir
-Create Virtual Environment:
+git clone https://github.com/your-username/url-shortener.git
+cd url-shortener
+```
 
-bash
+### 2. Create a Virtual Environment & Activate It
 
+```bash
 python -m venv venv
-Activate Virtual Environment:
+venv\Scripts\activate  # Windows
+# or
+source venv/bin/activate  # macOS/Linux
+```
 
-Windows:
+### 3. Install Dependencies
 
-bash
-
-venv\Scripts\activate
-Linux/macOS:
-
-bash
-
-source venv/bin/activate
-Install Dependencies:
-
-bash
-
+```bash
 pip install -r requirements.txt
-Set up .env file:
+```
 
-Create a .env file in the root directory and add your MongoDB URI:
+### 4. Set Up Environment Variables
 
-ini
+Create a `.env` file in the root directory and add your MongoDB connection string:
 
-MONGO_URI=your_mongo_connection_string_here
-Run the Application:
+```env
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority
+```
 
-bash
+### 5. Run the Server
 
+```bash
 python app.py
-App will run on: http://localhost:5000
+```
 
-📬 API Endpoints
-1. Create Short URL
-http
+Server will run at `http://localhost:5000`
 
-POST /shorten
-Body: { "url": "https://example.com" }
-2. Get Original URL
-http
+### 6. Open Frontend
 
-GET /shorten/<shortCode>
-3. Update URL
-http
+Open `index.html` in your browser to use the simple interface.
 
-PUT /shorten/<shortCode>
-Body: { "url": "https://new-url.com" }
-4. Delete URL
-http
+---
 
-DELETE /shorten/<shortCode>
-5. Get Stats
-http
+## 🔧 API Endpoints
 
-GET /shorten/<shortCode>/stats
-🧪 Testing with Postman
-You can use Postman or VS Code Postman Extension to test endpoints by sending JSON requests to http://localhost:5000.
+### POST `/shorten`
 
-📁 Branch Strategy
-main: Contains only the README.md
+**Request:**
 
-dev: Full working application with all endpoints
+```json
+{
+  "url": "https://www.example.com/some/long/url"
+}
+```
+
+**Response:**
+
+```json
+{
+  "id": "1",
+  "url": "https://www.example.com/some/long/url",
+  "shortCode": "abc123",
+  "createdAt": "...",
+  "updatedAt": "..."
+}
+```
+
+### GET `/shorten/<shortCode>`
+
+Returns the original URL or 404 if not found.
+
+### PUT `/shorten/<shortCode>`
+
+Update the long URL.
+
+```json
+{
+  "url": "https://new-url.com"
+}
+```
+
+### DELETE `/shorten/<shortCode>`
+
+Deletes the short URL.
+
+### GET `/shorten/<shortCode>/stats`
+
+Returns access statistics:
+
+```json
+{
+  "accessCount": 10,
+  ...
+}
+```
+
+---
+
+## 📱 Screenshots
+
+<img width="1908" height="834" alt="image" src="https://github.com/user-attachments/assets/09743c2e-3259-4c42-8b52-8a8b8fd4a418" />
 
 
-👨‍💻 Author
-Fahad Nasir
-Email: fahadnasir1311@gmail.com
-GitHub: https://github.com/fahadnasir13
+---
+
+## 👤 Author
+
+**Fahad Nasir**
+
+* GitHub: [@fahadnasir13](https://github.com/fahadnasir13)
+
+---
+
+## 🙌 Acknowledgements
+
+* Innovaxel assignment challenge
+* MongoDB Atlas free tier
+* Flask official documentation
+
+---
+
+## 📖 License
+
+MIT License. Feel free to use or improve this project with attribution.
